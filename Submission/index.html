@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Exercise</title>
+
+    <link rel="icon" href="favicon.ico?v=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mb-5">Loops</h1>
+      <h2>Expired coupons</h2>
+      <table class="table mb-5">
+        <thead>
+          <th>Title</th>
+          <th>Coupon code</th>
+          <th>Discount</th>
+          <th>Expired?</th>
+        </thead>
+        <tbody id="partA"></tbody>
+      </table>
+
+      <h2>For loop</h2>
+      <table class="table mb-5">
+        <thead>
+          <th>Title</th>
+          <th>Coupon code</th>
+          <th>Discount</th>
+          <th>Expired?</th>
+        </thead>
+        <tbody id="partB"></tbody>
+      </table>
+
+      <h2>For...of loop</h2>
+      <table class="table mb-5">
+        <thead>
+          <th>Title</th>
+          <th>Coupon code</th>
+          <th>Discount</th>
+          <th>Expired?</th>
+        </thead>
+        <tbody id="partC"></tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      function getExpiredText(expired) {
+        if (expired === undefined) {
+          return "";
+        }
+
+        if (expired) {
+          return `<span class="text-danger">Yes</span>`;
+        }
+
+        return `<span class="text-success">No</span>`;
+      }
+
+      function getTableRowHTML({ title, code, discount, expired }) {
+        return `
+          <tr>
+            <td>${title}</td>
+            <td><span class="badge badge-secondary">${code}</span></td>
+            <td>${discount * 100}%</td>
+            <td>${getExpiredText(expired)}</td>
+          </tr>
+        `;
+      }
+
+      if (typeof couponsPartA !== "undefined") {
+        const partAEl = document.querySelector("#partA");
+        const partAHTML = couponsPartA.map(getTableRowHTML).join("");
+        partAEl.innerHTML = partAHTML;
+      }
+
+      if (typeof couponsPartB !== "undefined") {
+        const partBEl = document.querySelector("#partB");
+        const partBHTML = couponsPartB.map(getTableRowHTML).join("");
+        partBEl.innerHTML = partBHTML;
+      }
+
+      if (typeof couponsPartC !== "undefined") {
+        const partCEl = document.querySelector("#partC");
+        const partCHTML = couponsPartC.map(getTableRowHTML).join("");
+        partCEl.innerHTML = partCHTML;
+      }
+    </script>
+  </body>
+</html>
